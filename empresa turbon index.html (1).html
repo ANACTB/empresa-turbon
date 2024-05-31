@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Empresa TurBON</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        h1 {
+            color: #1b1bfa; /* Azul */
+            font-weight: bold; /* Negrito */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="logo.png" alt="Logo da TurBON" class="logo" id="logoImage"> <!-- Adicionando um ID ao logo -->
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Sobre Nós</a></li>
+                <li><a href="#">Serviços<recuperação de contas></li>
+                <li><a href="#">E-MAIL<ana.turini924@gmail.com></li>
+            </ul>
+        </nav>
+        <h1>Bem-vindo à Empresa TurBON</h1>
+    </header>
+    <main>
+        <section>
+            <h2>Sobre Nós</h2>
+            <p>Bem-vindo ao site da nossa empresa. Somos uma empresa confiável e dedicada a ajudar as pessoas a melhorar suas situações. Garantimos total sigilo e segurança em todos os nossos serviços.</p>
+        </section>
+        <section>
+            <h2>Nossos Serviços</h2>
+            <div class="service">
+                <h3>Suporte Técnico para Redes Sociais</h3>
+                <p>Oferecemos assistência técnica para resolver problemas relacionados às contas de redes sociais com total sigilo e profissionalismo.</p>
+            </div>
+            <!-- outros serviços aqui -->
+        </section>
+        <section>
+            <h2>Selecione uma Imagem</h2>
+            <input type="file" id="fileInput" accept="image/*">
+            <img id="selectedImage" alt="Foto da Empresa" class="empresa-img" style="display: none; margin-top: 80px;">
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 TurBON. Todos os direitos reservados. Confiabilidade e sigilo em todos os nossos serviços.</p>
+    </footer>
+
+    <script>
+        // Verifica se há uma imagem armazenada localmente
+        const storedImage = localStorage.getItem('selectedImage');
+        if (storedImage) {
+            const img = document.getElementById('selectedImage');
+            img.src = storedImage;
+            img.style.display = 'block';
+        }
+
+        document.getElementById('fileInput').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const img = document.getElementById('selectedImage');
+                    img.src = e.target.result;
+                    img.style.display = 'block';
+                    // Armazena a imagem localmente no navegador
+                    localStorage.setItem('selectedImage', e.target.result);
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
+</body>
+</html>
